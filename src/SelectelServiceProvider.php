@@ -1,6 +1,6 @@
 <?php
 
-namespace Reg2005\LaravelSelectel;
+namespace Febalist\LaravelSelectel;
 
 use Illuminate\Support\ServiceProvider;
 
