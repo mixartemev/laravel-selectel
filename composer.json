@@ -17,5 +17,12 @@
     "psr-4": {
       "Febalist\\LaravelSelectel\\": "src"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Febalist\\LaravelSelectel\\SelectelServiceProvider"
+      ]
+    }
   }
 }
