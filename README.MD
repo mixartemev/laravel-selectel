@@ -14,7 +14,7 @@ Add to config/filesystems.php in "disks" array:
     'selectel' => [
         'driver'    => 'selectel',
         'username'  => env('SELECTEL_USERNAME'),
-        'key'       => env('SELECTEL_SAPPWORD'),
+        'key'       => env('SELECTEL_PASSWORD'),
         'container' => env('SELECTEL_CONTAINER'),
         'endpoint'  => 'https://auth.selcdn.ru',
         'region'   => 'aws-global',
