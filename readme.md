@@ -4,17 +4,17 @@ composer require febalist/laravel-selectel
  
 ```php
 'selectel' => [
-  'driver' => 'selectel',
+  'driver'    => 'selectel',
+  'username'  => env('SELECTEL_USERNAME'),
+  'password'  => env('SELECTEL_PASSWORD'),
   'container' => env('SELECTEL_CONTAINER'),
-  'username' => env('SELECTEL_USERNAME'),
-  'password' => env('SELECTEL_PASSWORD'),
-  'domain' => env('SELECTEL_DOMAIN'),
+  'domain'    => env('SELECTEL_DOMAIN'),
+  'ssl'       => env('SELECTEL_SSL', true),
 ],
 ``` 
 
 ```dotenv
-SELECTEL_CONTAINER=
 SELECTEL_USERNAME=
 SELECTEL_PASSWORD=
-SELECTEL_DOMAIN=
+SELECTEL_CONTAINER=
 ```
