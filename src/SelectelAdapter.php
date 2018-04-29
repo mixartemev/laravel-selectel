@@ -6,7 +6,7 @@ use ArgentCrusade\Flysystem\Selectel\SelectelAdapter as ArgentCrusadeAdapter;
 use ArgentCrusade\Selectel\CloudStorage\Api\ApiClient;
 use ArgentCrusade\Selectel\CloudStorage\Container;
 use ArgentCrusade\Selectel\CloudStorage\Exceptions\ApiRequestFailedException;
-use Carbon\Carbon;
+use DateTimeInterface;
 
 class SelectelAdapter extends ArgentCrusadeAdapter
 {
@@ -14,7 +14,7 @@ class SelectelAdapter extends ArgentCrusadeAdapter
     protected $container;
     protected $tempUrlKey;
 
-    public function getTemporaryUrl($path, Carbon $expiration, array $options = [])
+    public function getTemporaryUrl($path, DateTimeInterface $expiration, array $options = [])
     {
         if (!$this->tempUrlKey) {
             $this->tempUrlKey = config('app.key');
@@ -22,7 +22,7 @@ class SelectelAdapter extends ArgentCrusadeAdapter
         }
 
         $url = $this->getUrl($path);
-        $expiration = $expiration->timestamp;
+        $expiration = $expiration->getTimestamp();
         $sig = $this->sigTempUrl($path, $expiration, $this->tempUrlKey);
 
         $res = $url.'?temp_url_sig='.$sig.'&temp_url_expires='.$expiration;
@@ -44,7 +44,7 @@ class SelectelAdapter extends ArgentCrusadeAdapter
         $url = $this->api()->storageUrl().'/'.$this->container->name();
         $response = $this->api()->request('POST', $url, [
             'headers' => [
-                'X-Auth-Token'                  => $this->api()->token(),
+                'X-Auth-Token' => $this->api()->token(),
                 'X-Container-Meta-Temp-URL-Key' => $key,
             ],
         ]);
@@ -58,6 +58,7 @@ class SelectelAdapter extends ArgentCrusadeAdapter
     {
         $path = '/'.$this->container->name().str_start($path, '/');
         $sig_body = "GET\n$expiration\n$path";
+
         return hash_hmac('sha1', $sig_body, $key);
     }
 

@@ -28,6 +28,7 @@ class SpatieUrlGenerator extends BaseUrlGenerator
     public function getUrl(): string
     {
         $path = $this->getPath();
+
         return $this->disk()->url($path);
     }
 
@@ -42,6 +43,7 @@ class SpatieUrlGenerator extends BaseUrlGenerator
     public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
     {
         $path = $this->getPath();
+
         return $this->disk()->temporaryUrl($path, $expiration, $options);
     }
 
@@ -63,6 +65,7 @@ class SpatieUrlGenerator extends BaseUrlGenerator
     public function getResponsiveImagesDirectoryUrl(): string
     {
         $path = $this->pathGenerator->getPathForResponsiveImages($this->media);
+
         return $this->disk()->url($path);
     }
 
