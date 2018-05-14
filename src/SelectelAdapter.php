@@ -33,6 +33,21 @@ class SelectelAdapter extends ArgentCrusadeAdapter
         return $res;
     }
 
+    /** @inheritdoc */
+    public function rename($path, $newpath)
+    {
+        if (str_contains($newpath, '/')) {
+            if (parent::copy($path, $newpath)) {
+                parent::delete($path);
+                return true;
+            }
+        } else {
+            return parent::rename($path, $newpath);
+        }
+
+        return false;
+    }
+
     /** @return ApiClient */
     protected function api()
     {
@@ -61,5 +76,4 @@ class SelectelAdapter extends ArgentCrusadeAdapter
 
         return hash_hmac('sha1', $sig_body, $key);
     }
-
 }
