@@ -48,6 +48,20 @@ class SelectelAdapter extends ArgentCrusadeAdapter
         return false;
     }
 
+    /** @inheritdoc */
+    public function listContents($directory = '', $recursive = false)
+    {
+        try {
+            return parent::listContents($directory, $recursive);
+        } catch (ApiRequestFailedException $exception) {
+            if ($exception->getMessage() == 'Unable to list container files.') {
+                return [];
+            } else {
+                throw $exception;
+            }
+        }
+    }
+
     /** @return ApiClient */
     protected function api()
     {
