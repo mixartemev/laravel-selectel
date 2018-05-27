@@ -19,8 +19,8 @@ class ApiClient extends ArgentCrusadeApiClient
                 'X-Auth-Token' => $this->token(),
             ],
             'handler' => $this->createLoggingHandlerStack([
-                '{method} {uri} HTTP/{version} {req_body}',
-                'RESPONSE: {code} {res_header_Content-Length} - {res_body}',
+                '{method} {uri}',
+                'RESPONSE: {code}',
             ]),
         ]);
     }
