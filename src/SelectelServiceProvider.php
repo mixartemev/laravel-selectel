@@ -2,7 +2,6 @@
 
 namespace Febalist\LaravelSelectel;
 
-use ArgentCrusade\Selectel\CloudStorage\Api\ApiClient;
 use ArgentCrusade\Selectel\CloudStorage\CloudStorage;
 use ArgentCrusade\Selectel\CloudStorage\Container;
 use Illuminate\Support\Facades\Storage;
