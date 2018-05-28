@@ -65,7 +65,7 @@ class SelectelAdapter extends ArgentCrusadeAdapter
     public function delete($path)
     {
         $result = parent::delete($path);
-        sleep(1);
+        usleep(1.2 * 1000000);
 
         return $result;
     }
