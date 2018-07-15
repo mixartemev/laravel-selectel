@@ -2,6 +2,7 @@
 
 namespace Febalist\LaravelSelectel;
 
+use ArgentCrusade\Selectel\CloudStorage\Api\ApiClient as ArgentCrusadeApiClient;
 use ArgentCrusade\Selectel\CloudStorage\CloudStorage;
 use ArgentCrusade\Selectel\CloudStorage\Container;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,11 @@ class SelectelServiceProvider extends ServiceProvider
     public function boot()
     {
         Storage::extend('selectel', function ($app, $config) {
-            $api = new ApiClient($config['username'], $config['password']);
+            if ($config['logs'] ?? false) {
+                $api = new ApiClient($config['username'], $config['password']);
+            } else {
+                $api = new ArgentCrusadeApiClient($config['username'], $config['password']);
+            }
             $api->authenticate();
 
             $storage = new CloudStorage($api);
