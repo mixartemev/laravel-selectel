@@ -7,8 +7,21 @@ use GuzzleHttp\Client;
 
 class ApiClient extends ArgentCrusadeApiClient
 {
+    protected $logsEnabled;
+
+    public function __construct(string $username, string $password, $logs = false)
+    {
+        parent::__construct($username, $password);
+
+        $this->logsEnabled = $logs;
+    }
+
     public function getHttpClient()
     {
+        if (!$this->logsEnabled) {
+            return parent::getHttpClient();
+        }
+
         if (!is_null($this->httpClient)) {
             return $this->httpClient;
         }
