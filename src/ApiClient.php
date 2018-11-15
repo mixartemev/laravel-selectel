@@ -25,6 +25,20 @@ class ApiClient extends ArgentCrusadeApiClient
         ]);
     }
 
+    public function request($method, $url, array $params = [])
+    {
+        $response = parent::request($method, $url, $params);
+
+        if ($response->getStatusCode() == 401) {
+            $this->token = null;
+            $this->authenticate();
+
+            return $this->request($method, $url, $params);
+        }
+
+        return $response;
+    }
+
     protected function createLoggingHandlerStack(array $messageFormats)
     {
         $stack = \GuzzleHttp\HandlerStack::create();
