@@ -62,6 +62,11 @@ class SelectelAdapter extends ArgentCrusadeAdapter
         }
     }
 
+    public function getPathPrefix()
+    {
+        return '';
+    }
+
     /** @return ApiClient */
     protected function api()
     {
