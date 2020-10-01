@@ -1,8 +1,14 @@
 {
   "name": "febalist/laravel-selectel",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/vitsw/selectel-cloud-storage.git"
+    }
+  ],
   "require": {
     "league/flysystem": "~1.0",
-    "argentcrusade/selectel-cloud-storage": "~1.1",
+    "argentcrusade/selectel-cloud-storage": "dev-guzzle7 as 1.2.2",
     "argentcrusade/flysystem-selectel": "^1.2"
   },
   "autoload": {
